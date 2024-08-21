@@ -1,0 +1,335 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css";
+@import "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css";
+html, body {
+  background: black;
+}
+
+@font-face {
+  font-family: "Dharma Gothic M W01 ExBold It";
+  src: url("static/fonts/4e7ddcb3-7f7a-42ae-be45-0f8c26e96c5f.woff2") format("woff2"), url("static/fonts/8ef89e54-9196-4892-8377-8df30af0b1e9.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Dharma Gothic E W01 Bold";
+  src: url("static/fonts/bf2af483-9607-4d6d-8343-eecddea64d12.woff2") format("woff2"), url("static/fonts/f668cb64-5777-406c-b6e0-54e930e05d88.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Proxima N W01 Reg";
+  src: url("static/fonts/64017d81-9430-4cba-8219-8f5cc28b923e.woff2") format("woff2"), url("static/fonts/e56ecb6d-da41-4bd9-982d-2d295bec9ab0.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Proxima N W01 Smbd";
+  src: url("static/fonts/ae47a7f5-89da-4879-b934-29722c3dd451.woff2") format("woff2"), url("static/fonts/70ae52ec-d89b-4c6a-9402-854ebe423c54.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Proxima N W01 Xbold";
+  src: url("static/fonts/eb39afe0-709e-46d6-92ad-db5c3bfd24a9.woff2") format("woff2"), url("static/fonts/19dd5cf2-ac2d-48d5-901a-c432fd291ee2.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+h1 {
+  font-size: 8.5rem;
+  font-family: "Dharma Gothic E W01 Bold";
+  text-transform: uppercase;
+  color: white;
+}
+
+h2 {
+  font-size: 6.5rem;
+  font-family: "Dharma Gothic E W01 Bold";
+  text-transform: uppercase;
+  color: white;
+}
+
+h3 {
+  font-size: 5.5rem;
+  font-family: "Dharma Gothic E W01 Bold";
+  text-transform: uppercase;
+  color: white;
+}
+
+.splide__slide {
+  height: 100vh;
+  width: 100vw;
+}
+
+.splide__slide img {
+  height: 100vh;
+  width: 100vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.splide__slide video {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100vh;
+  width: 100vw;
+}
+
+.splide__progress {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.leaderboard-background {
+  background-image: url("static/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+}
+
+.leaderboard img {
+  width: initial;
+  height: initial;
+  max-width: 200px;
+}
+
+.leaderboard h1 {
+  color: white;
+}
+
+.version {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  color: black;
+  color: white;
+  opacity: 0.8;
+  z-index: 10000;
+  font-family: "Proxima N W01 Xbold";
+  padding: 5px 10px;
+}
+
+.fixture-background {
+  background-image: url("static/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  font-family: "Proxima N W01 Xbold";
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.fixture-background .league-table {
+  max-width: 90%;
+  margin: 0 auto;
+  width: 100%;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);
+}
+.fixture-background .league-table ul {
+  padding: 0;
+  margin: 0;
+  background: white;
+  color: black;
+  width: 100%;
+}
+.fixture-background .league-table ul li {
+  border-bottom: 1px solid #ccc;
+}
+.fixture-background .league-table ul li span {
+  font-family: "Dharma Gothic E W01 Bold";
+  text-transform: uppercase;
+  font-size: 3em;
+}
+.fixture-background .league-table li,
+.fixture-background .league-table-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.fixture-background .league-table li span,
+.fixture-background .league-table-header span {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 3px 10px;
+}
+.fixture-background .league-table li span.team-position,
+.fixture-background .league-table-header span.team-position {
+  -webkit-box-flex: 0.35;
+      -ms-flex: 0.35;
+          flex: 0.35;
+}
+.fixture-background .league-table li span.team-name,
+.fixture-background .league-table-header span.team-name {
+  -webkit-box-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
+  text-align: left;
+}
+.fixture-background .league-table-header {
+  background: yellow;
+  border-bottom: 1px solid #ccc;
+}
+.fixture-background .league-table-header span {
+  font-family: "Dharma Gothic E W01 Bold";
+  font-size: 2.4rem;
+  text-transform: uppercase;
+}
+.fixture-background .league-header {
+  background: black;
+  text-align: left;
+  padding: 20px 30px;
+}
+.fixture-background .league-header h2 {
+  padding: 0;
+  line-height: 0.8;
+  margin: 0;
+}
+.fixture-background .league-header h3 {
+  line-height: 0.8;
+  padding: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.kids-parties-background {
+  background-image: url("https://locker-room.goalsfootball.co.uk/kp-welcome-background.png");
+  background-size: cover;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+.kids-parties-background .enquiry-image {
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 583 419"><path d="M 259.500 1.138 C 241.046 2.397, 213.935 6.500, 197 10.598 C 164.570 18.445, 140.314 27.011, 91 48.032 C 86.875 49.791, 79.457 52.702, 74.515 54.503 L 65.529 57.777 64.339 66.663 C 63.684 71.550, 62.178 78.013, 60.992 81.024 C 51.966 103.947, 30.971 120.275, 7.243 122.827 L 0.986 123.500 0.743 270.752 L 0.500 418.003 291.917 417.752 C 549.962 417.529, 583.380 417.328, 583.743 416 C 584.107 414.667, 584.034 414.667, 583.091 416 C 582.342 417.060, 582.026 374.507, 582.015 270.867 L 582 124.233 579.750 123.630 C 578.513 123.299, 576.286 123.021, 574.802 123.014 C 570.238 122.991, 556.840 118.252, 550.098 114.276 C 542.677 109.899, 531.245 98.828, 528.448 93.309 C 527.386 91.214, 525.917 88.752, 525.183 87.838 C 524.449 86.923, 523.749 85.573, 523.626 84.838 C 523.504 84.102, 522.826 82.449, 522.121 81.164 C 521.415 79.880, 521.096 78.571, 521.410 78.256 C 521.725 77.942, 521.481 77.080, 520.869 76.342 C 520.256 75.604, 520.051 75, 520.413 75 C 520.774 75, 520.614 74.147, 520.056 73.105 C 519.499 72.063, 518.846 68.351, 518.605 64.855 L 518.168 58.500 511.834 56.109 C 508.350 54.794, 494.250 49.016, 480.500 43.267 C 449.800 30.433, 436.026 25.242, 416 18.960 C 386.049 9.563, 353.569 3.287, 324 1.182 C 307.837 0.032, 276.046 0.010, 259.500 1.138" /></svg>') center/contain no-repeat;
+          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 583 419"><path d="M 259.500 1.138 C 241.046 2.397, 213.935 6.500, 197 10.598 C 164.570 18.445, 140.314 27.011, 91 48.032 C 86.875 49.791, 79.457 52.702, 74.515 54.503 L 65.529 57.777 64.339 66.663 C 63.684 71.550, 62.178 78.013, 60.992 81.024 C 51.966 103.947, 30.971 120.275, 7.243 122.827 L 0.986 123.500 0.743 270.752 L 0.500 418.003 291.917 417.752 C 549.962 417.529, 583.380 417.328, 583.743 416 C 584.107 414.667, 584.034 414.667, 583.091 416 C 582.342 417.060, 582.026 374.507, 582.015 270.867 L 582 124.233 579.750 123.630 C 578.513 123.299, 576.286 123.021, 574.802 123.014 C 570.238 122.991, 556.840 118.252, 550.098 114.276 C 542.677 109.899, 531.245 98.828, 528.448 93.309 C 527.386 91.214, 525.917 88.752, 525.183 87.838 C 524.449 86.923, 523.749 85.573, 523.626 84.838 C 523.504 84.102, 522.826 82.449, 522.121 81.164 C 521.415 79.880, 521.096 78.571, 521.410 78.256 C 521.725 77.942, 521.481 77.080, 520.869 76.342 C 520.256 75.604, 520.051 75, 520.413 75 C 520.774 75, 520.614 74.147, 520.056 73.105 C 519.499 72.063, 518.846 68.351, 518.605 64.855 L 518.168 58.500 511.834 56.109 C 508.350 54.794, 494.250 49.016, 480.500 43.267 C 449.800 30.433, 436.026 25.242, 416 18.960 C 386.049 9.563, 353.569 3.287, 324 1.182 C 307.837 0.032, 276.046 0.010, 259.500 1.138" /></svg>') center/contain no-repeat;
+}
+.kids-parties-background .container .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.kids-parties-background h1, .kids-parties-background h2, .kids-parties-background h3 {
+  font-family: "Dharma Gothic E W01 Bold";
+  letter-spacing: 2px !important;
+  color: white;
+  text-transform: uppercase;
+  line-height: 0.8 !important;
+}
+.kids-parties-background h1 {
+  font-size: 10rem !important;
+  padding: 0;
+  line-height: 0.8;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: Dharma Gothic M W01 ExBold It !important;
+}
+.kids-parties-background h2 {
+  font-size: 12rem !important;
+  color: #f1da2d;
+  text-transform: uppercase;
+  padding: 10px;
+}
+.kids-parties-background h3 {
+  font-size: 8rem !important;
+  font-family: Dharma Gothic M W01 ExBold It !important;
+  text-transform: uppercase;
+}
+.kids-parties-background .badge-image {
+  height: 80vh;
+  width: initial !important;
+}
+.kids-parties-background .badge-container {
+  position: relative;
+  display: inline-block;
+}
+.kids-parties-background .badge-container .enquiry-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  height: calc(50% - 25px);
+  overflow: hidden;
+  margin: 9px;
+  width: calc(100% - 18px);
+}
+.kids-parties-background .badge-container .enquiry-image img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-position: center;
+     object-position: center;
+}
+.kids-parties-background .age, .kids-parties-background .name {
+  font: 16px Dharma Gothic M W01 ExBold It !important;
+  color: white;
+  position: absolute;
+  display: inline-block;
+  background: black;
+  text-transform: uppercase;
+  padding-bottom: 0;
+  margin: 0 auto;
+  line-height: 0.9;
+}
+.kids-parties-background .age {
+  padding: 10px 30px;
+  font-size: 3rem !important;
+  border: 3px solid #f1da2d;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  -webkit-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.54);
+          box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.54);
+}
+.kids-parties-background .name {
+  font-size: 6em !important;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  line-height: 0.9;
+  -webkit-transform: translate(-50%, -8px);
+          transform: translate(-50%, -8px);
+}

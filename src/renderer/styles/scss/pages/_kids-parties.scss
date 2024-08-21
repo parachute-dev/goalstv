@@ -1,0 +1,113 @@
+.kids-parties-background{
+  background-image: url("https://locker-room.goalsfootball.co.uk/kp-welcome-background.png");
+  background-size: cover;
+  display: flex!important;
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+
+
+
+.enquiry-image{
+   mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 583 419"><path d="M 259.500 1.138 C 241.046 2.397, 213.935 6.500, 197 10.598 C 164.570 18.445, 140.314 27.011, 91 48.032 C 86.875 49.791, 79.457 52.702, 74.515 54.503 L 65.529 57.777 64.339 66.663 C 63.684 71.550, 62.178 78.013, 60.992 81.024 C 51.966 103.947, 30.971 120.275, 7.243 122.827 L 0.986 123.500 0.743 270.752 L 0.500 418.003 291.917 417.752 C 549.962 417.529, 583.380 417.328, 583.743 416 C 584.107 414.667, 584.034 414.667, 583.091 416 C 582.342 417.060, 582.026 374.507, 582.015 270.867 L 582 124.233 579.750 123.630 C 578.513 123.299, 576.286 123.021, 574.802 123.014 C 570.238 122.991, 556.840 118.252, 550.098 114.276 C 542.677 109.899, 531.245 98.828, 528.448 93.309 C 527.386 91.214, 525.917 88.752, 525.183 87.838 C 524.449 86.923, 523.749 85.573, 523.626 84.838 C 523.504 84.102, 522.826 82.449, 522.121 81.164 C 521.415 79.880, 521.096 78.571, 521.410 78.256 C 521.725 77.942, 521.481 77.080, 520.869 76.342 C 520.256 75.604, 520.051 75, 520.413 75 C 520.774 75, 520.614 74.147, 520.056 73.105 C 519.499 72.063, 518.846 68.351, 518.605 64.855 L 518.168 58.500 511.834 56.109 C 508.350 54.794, 494.250 49.016, 480.500 43.267 C 449.800 30.433, 436.026 25.242, 416 18.960 C 386.049 9.563, 353.569 3.287, 324 1.182 C 307.837 0.032, 276.046 0.010, 259.500 1.138" /></svg>' )
+  center/contain no-repeat;
+}
+
+
+.container .row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+h1,h2,h3{
+  font-family: "Dharma Gothic E W01 Bold";
+  letter-spacing:2px!important;
+  color: white;
+  text-transform:uppercase;
+  line-height:0.8!important;
+}
+h1{
+  font-size:10rem!important;
+  padding:0;
+  line-height:0.8;
+  margin:0;  text-transform:uppercase;
+
+  font-family: Dharma Gothic M W01 ExBold It!important;
+
+}
+h2{
+  font-size:12rem!important;
+  color:#f1da2d;  text-transform:uppercase;
+
+  padding:10px;
+}
+h3{
+  font-size:8rem!important;
+  font-family: Dharma Gothic M W01 ExBold It!important;
+  text-transform:uppercase;
+
+}
+.badge-image{
+  height: 80vh;
+  width:initial!important;
+}
+.badge-container{
+  position:relative;
+  display:inline-block;
+}
+.badge-container .enquiry-image{
+  position:absolute;
+  top:0;
+  left:0;
+  background:black;
+  height:calc(50% - 25px);
+  overflow:hidden;
+  margin:9px;
+  width:calc(100% - 18px);
+}
+.badge-container .enquiry-image img{
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-position: center;
+}
+
+.age, .name{
+  font:16px Dharma Gothic M W01 ExBold It!important;
+  color:white;
+  position:absolute;
+  display:inline-block;
+  background:black;  text-transform:uppercase;
+padding-bottom:0;
+  margin:0 auto;
+  line-height:0.9;
+}
+.age{
+  padding:10px 30px;
+  font-size:3rem!important;
+  border:3px solid #f1da2d;
+  bottom:0;
+  left:50%;
+  transform:translate(-50%,-0);
+  box-shadow:0px 0px 30px rgba(0,0,0,0.54);
+}
+.name{
+  font-size:6em!important;
+  top:50%;
+  left:50%;
+  width: 90%;
+  line-height:0.9;
+
+  transform:translate(-50%,-8px);
+}
+}

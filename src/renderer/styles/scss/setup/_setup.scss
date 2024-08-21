@@ -1,0 +1,46 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css";
+@import "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css";
+
+html,body{
+  background:black;
+}
+
+@font-face{
+    font-family:"Dharma Gothic M W01 ExBold It";
+    src:url("static/fonts/4e7ddcb3-7f7a-42ae-be45-0f8c26e96c5f.woff2") format("woff2"),url("static/fonts/8ef89e54-9196-4892-8377-8df30af0b1e9.woff") format("woff");
+      font-weight: normal;
+  font-style: normal;
+  font-display: swap;;
+
+}
+@font-face{
+    font-family:"Dharma Gothic E W01 Bold";
+    src:url("static/fonts/bf2af483-9607-4d6d-8343-eecddea64d12.woff2") format("woff2"),url("static/fonts/f668cb64-5777-406c-b6e0-54e930e05d88.woff") format("woff");
+      font-weight: normal;
+  font-style: normal;
+  font-display: swap;;
+
+}
+@font-face{
+    font-family:"Proxima N W01 Reg";
+    src:url("static/fonts/64017d81-9430-4cba-8219-8f5cc28b923e.woff2") format("woff2"),url("static/fonts/e56ecb6d-da41-4bd9-982d-2d295bec9ab0.woff") format("woff");
+      font-weight: normal;
+  font-style: normal;
+  font-display: swap;;
+}
+@font-face{
+    font-family:"Proxima N W01 Smbd";
+    src:url("static/fonts/ae47a7f5-89da-4879-b934-29722c3dd451.woff2") format("woff2"),url("static/fonts/70ae52ec-d89b-4c6a-9402-854ebe423c54.woff") format("woff");
+      font-weight: normal;
+  font-style: normal;
+  font-display: swap;;
+}
+@font-face{
+    font-family:"Proxima N W01 Xbold";
+    src:url("static/fonts/eb39afe0-709e-46d6-92ad-db5c3bfd24a9.woff2") format("woff2"),url("static/fonts/19dd5cf2-ac2d-48d5-901a-c432fd291ee2.woff") format("woff");
+      font-weight: normal;
+  font-style: normal;
+  font-display: swap;;
+}
+

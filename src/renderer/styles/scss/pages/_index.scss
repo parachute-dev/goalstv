@@ -1,0 +1,112 @@
+.leaderboard-background {
+  background-image: url("static/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+}
+.leaderboard img {
+  width: initial;
+  height: initial;
+  max-width: 200px;
+}
+.leaderboard h1 {
+  color: white;
+}
+
+.version {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  color: black;
+  color: white;
+  opacity: 0.8;
+  z-index: 10000;
+  font-family: "Proxima N W01 Xbold";
+  padding: 5px 10px;
+}
+
+.fixture-background {
+  background-image: url("static/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  font-family: "Proxima N W01 Xbold";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .league-table {
+    max-width: 90%;
+    margin: 0 auto;
+    width: 100%;
+    box-shadow:0px 0px 20px rgba(0,0,0,0.9);
+  }
+
+
+  .league-table ul {
+    padding: 0;
+    margin: 0;
+    background: white;
+    color: black;
+    width: 100%;
+    li {
+      border-bottom:1px solid #ccc;
+      span {
+        font-family: "Dharma Gothic E W01 Bold";
+        text-transform: uppercase;
+        font-size: 3em;
+      }
+    }
+  }
+  .league-table li,
+  .league-table-header {
+    display: flex;
+    align-items: center;
+
+    span {
+      flex: 1;
+      padding: 3px 10px;
+
+      &.team-position {
+        flex: 0.35;
+      }
+      &.team-name {
+        flex: 5;
+        text-align: left;
+      }
+    }
+  }
+
+  .league-table-header {
+    background: yellow;
+    border-bottom:1px solid #ccc;
+
+    span {
+      font-family: "Dharma Gothic E W01 Bold";
+      font-size: 2.4rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .league-header {
+    background: black;
+    text-align: left;
+    padding: 20px 30px;
+
+
+    h2 {
+      padding: 0;
+      line-height: 0.8;
+      margin: 0;
+    }
+    h3 {
+      line-height: 0.8;
+      padding: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+}
