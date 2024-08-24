@@ -1,5 +1,5 @@
 {
-  "description": "A foundation for scalable desktop apps",
+  "description": "Goals TV",
   "keywords": [
     "electron",
     "boilerplate",
@@ -21,17 +21,10 @@
   },
   "license": "MIT",
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://electron-react-boilerplate.js.org"
+    "name": "Parachute",
+    "email": "david@parachute.net",
+    "url": "https://www.parachute.net"
   },
-  "contributors": [
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
-    }
-  ],
   "main": "./src/main/main.ts",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
@@ -178,7 +171,7 @@
   },
   "build": {
     "productName": "GoalsTV",
-    "appId": "org.erb.ElectronReact",
+    "appId": "org.parachute.GoalsTV",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
@@ -216,11 +209,7 @@
         }
       ]
     },
-    "win": {
-      "target": [
-        "nsis"
-      ]
-    },
+
     "linux": {
       "target": [
         "AppImage"
@@ -235,10 +224,17 @@
     "extraResources": [
       "./assets/**"
     ],
+    "nsis": {
+      "oneClick": true,
+      "perMachine": true,
+      "allowElevation": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate"
+      "owner": "parachute-dev",
+      "repo": "goals-tv"
     }
   },
   "collective": {

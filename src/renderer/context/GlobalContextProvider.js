@@ -17,7 +17,9 @@ const initialState = {
   kids_parties: null,
   tournaments: null,
   tournament_results : null,
-  ads: null
+  ads: null,
+  kids_date: null,
+  tournament_date: null
 };
 
 function reducer(state, action) {
@@ -30,6 +32,20 @@ function reducer(state, action) {
         };
       }
 
+      case 'SET_KIDS_DATE':
+        {
+          return {
+            ...state,
+            kids_date: action.payload
+          }
+        }
+        case 'SET_TOURNAMENT_DATE':
+          {
+            return {
+              ...state,
+              tournament_date: action.payload
+            }
+          }
       case 'SET_LEAGUES':
         {
           return {

@@ -22,22 +22,22 @@ const age = differenceInYears(currentDate, dobDate);
 
 
   return (
-    <SplideSlide data-splide-interval={155000}>
+    <SplideSlide data-splide-interval={20000}>
       <div className="kids-parties-background">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="badge-container">
-                <img class="badge-image" src="https://locker-room.goalsfootball.co.uk/badge-no-name.png" alt=""/>
-                <div class="enquiry-image">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="badge-container">
+                <img className="badge-image" src="https://locker-room.goalsfootball.co.uk/badge-no-name.png" alt=""/>
+                <div className="enquiry-image">
                   <img src={`https://locker-room.goalsfootball.co.uk/get-kp-image?enquiry=${items.enquiryId}`} alt=""/>
                 </div>
-                <div class="name">{items.childsName}</div>
-                <div class="age">AGE: {age}
+                <div className="name">{items.childsName}</div>
+                <div className="age">AGE: {age}
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div className="col-md-6">
               <h3>Welcome To</h3>
               <h2>{items.childsName}'s</h2>
               <h1>FOOTBALL

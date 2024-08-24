@@ -10,7 +10,6 @@
 
 }
 
-
 .splide__slide video{
   object-fit:cover;
   height:100vh;
@@ -23,4 +22,8 @@
   left:0;
   width:100%;
   z-index:999;
+}
+
+html body .splide__arrow, .splide__pagination__page{
+  opacity:0.1!important;
 }

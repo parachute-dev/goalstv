@@ -6,7 +6,7 @@ const {format} = require('date-fns')
 import {GlobalDispatchContext, GlobalStateContext} from '../context/GlobalContextProvider';
 import Leaderboard from '../components/Leaderboard';
 import {useInterval} from '../hooks/useInterval.js';
-import {adsBase, dataHeaders, goalsHeaders, goalsApiBase} from '../global';
+import {adsBase, dataHeaders, goalsHeaders, goalsApiBase, shuffleArray} from '../global';
 
 import {Splide, SplideSlide, SplideTrack} from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
@@ -28,12 +28,6 @@ const Index = () => {
   const dispatch = React.useContext(GlobalDispatchContext);
   const state = React.useContext(GlobalStateContext);
 
-  const getCurrentClub = () => {
-    if (state.location != null) {
-      return state.clubs[state.location].code;
-    }
-  }
-
   const getClubs = () => {
     fetch(`${goalsApiBase}/branches`, {
       headers: goalsHeaders,
@@ -41,16 +35,13 @@ const Index = () => {
     }).then((response) => response.json()).then((responseJson) => {
       if (responseJson.branches != null) {
         dispatch({type: 'SET_CLUBS', payload: responseJson.branches});
-
       }
-
     }).catch((error) => {
       console.log(error);
     });
   };
 
   const getLeagues = async() => {
-    return null;
     try {
       const response = await fetch(`${goalsApiBase}/branches/${state.current_club}/leagues`, {
         headers: goalsHeaders,
@@ -94,6 +85,7 @@ const Index = () => {
         }
       }
     }
+
     return tables;
   }
 
@@ -116,6 +108,11 @@ const Index = () => {
     try {
       var currDate = new Date(Date.now());
       var todaysDate = format(currDate, "dd-MM-yyyy");
+
+      if (state.tournament_date != null && state.tournament_date != "") {
+        todaysDate = tournament_date;
+
+      }
       todaysDate = "20/08/2024";
 
       const response = await fetch(`${goalsApiBase}/tournaments/?branchId=${state.current_club}&tourdate=${todaysDate}`, {
@@ -126,13 +123,16 @@ const Index = () => {
       const responseJson = await response.json();
 
       if (responseJson.tournaments != null) {
-        console.log(responseJson);
+        if (responseJson.tournaments.length > 0){
         dispatch({type: 'SET_TOURNAMENTS', payload: responseJson.tournaments[0]});
 
         var results = await getTournamentResults(responseJson.tournaments[0].id);
 
-        dispatch({type: 'SET_TOURNAMENT_RESULTS', payload: results});
+        if (results != state.tournament_results) {
+          dispatch({type: 'SET_TOURNAMENT_RESULTS', payload: results});
+        }
       }
+    }
     } catch (error) {
       console.log(error);
     }
@@ -156,9 +156,17 @@ const Index = () => {
 
   const getKidsParties = () => {
 
-    const currDate = new Date(Date.now());
+    var currDate = new Date(Date.now());
+
+    if (state.kids_date != null && state.kids_date != "") {
+      currDate = new Date(kids_date);
+
+    }
+   // currDate = new Date("2024-08-23T11:35:00.0000000")
+
     const fromDate = format(currDate, "yyyy-MM-dd'T00:00:00");
-    const toDate = format(currDate, "yyyy-MM-dd'T23:59:59");
+    const toDate = format(currDate, "yyyy-MM-dd'T22:59:59");
+
 
     fetch(`${goalsApiBase}/branches/${state.current_club}/kidsparty?fromDate=${fromDate}&toDate=${toDate}`, {
       headers: goalsHeaders,
@@ -167,8 +175,34 @@ const Index = () => {
       if (responseJson.kidsParties != null) {
 
         if (responseJson.kidsParties !== undefined && responseJson.kidsParties.length != 0) {
+          var curatedParties = [];
+          var currentTime = new Date();
+         // currentTime = new Date("2024-08-24T11:35:00.0000000");
 
-          dispatch({type: 'SET_KIDS_PARTIES', payload: responseJson.kidsParties});
+          for (let j = 0; j < responseJson.kidsParties.length; j++) {
+
+            var bookingDate = new Date(responseJson.kidsParties[j].bookingDate);
+
+            var minutesBeforePartyStarts = new Date(bookingDate.getTime() - 15 * 60 * 1000);
+            var minutesAfterPartyStarts = new Date(bookingDate.getTime() + 15 * 60 * 1000);
+
+            var minutesBeforePartyEnds = new Date(bookingDate.getTime() + 20 * 60 * 1000);
+            var minutesAfterPartyEnds = new Date(bookingDate.getTime() + 40 * 60 * 1000);
+
+            if ((currentTime >= minutesBeforePartyStarts && currentTime <= minutesAfterPartyStarts) || (currentTime >= minutesBeforePartyEnds && currentTime <= minutesAfterPartyEnds)) {
+
+              curatedParties.push(responseJson.kidsParties[j]);
+            }
+
+
+
+
+          }
+          if (curatedParties != state.kids_parties){
+          dispatch({type: 'SET_KIDS_PARTIES', payload: curatedParties});
+          }
+
+
         }
       }
 
@@ -186,7 +220,7 @@ const Index = () => {
         method: 'GET'
       }).then((response) => response.json()).then((responseJson) => {
 
-        if (responseJson != null) {
+        if (responseJson != null && responseJson != state) {
           dispatch({type: 'SET_ADS', payload: responseJson});
         }
       }).catch((error) => {
@@ -198,18 +232,24 @@ const Index = () => {
   useEffect(() => {
     getAds();
     getClubs();
-    getKidsParties();
     getTournaments();
+    getKidsParties();
     getLeagues();
-  }, [state.location, state.course]);
+  }, [state.location]);
 
   useInterval(() => {
     getAds();
     getLeagues();
-  }, 10000);
+    getTournaments();
+  }, 600000);
+
+
+  useInterval(() => {
+    getKidsParties();
+  }, 300000);
 
   const renderAds = () => {
-    return null;
+
     const adSlides = []
     if (state.ads != null) {
       var slides = state
@@ -236,18 +276,18 @@ const Index = () => {
     return adSlides;
   };
 
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-    }
-    return array;
-  }
-
   const renderSlides = () => {
+    var league_tables = [];
+    var allAds = [];
+    const currDate = new Date(Date.now());
+    var parties = [];
+    var tournament_table = [];
+    var tournament_results = [];
+    var tournament_knockouts = [];
+    var all_tournaments = [];
+    var displayAds = renderAds();
 
     if (state.league_tables != null) {
-      var league_tables = [];
 
       for (let i = 0; i < state.league_tables.length; i++) {
         var night = state.league_tables[i];
@@ -263,38 +303,39 @@ const Index = () => {
                 if (divisions !== undefined && divisions.length != 0) {
 
                   for (let j = 0; j < divisions.length; j++) {
+                    var obj = night[key].leagueTable.divisionTables[j];
 
-                    league_tables.push(<LeagueSlide night={key} items={night[key].leagueTable.divisionTables[j]}/>)
+                    var noPlay = true;
+                    for (let k = 0; k < obj.rows.length; k++) {
+                      if (obj.rows[k].played > 0) {
+                        noPlay = false;
+                      }
+
+                    }
+                    if (noPlay == false) {
+                      league_tables.push(<LeagueSlide night={key} items={obj}/>)
+                    }
                   }
                 }
               }
             }
           });
+      }
+    }
+    if (state.kids_parties != null && state.kids_parties !== undefined) {
+      if (state.kids_parties.length > 0) {
+
+        for (let j = 0; j < state.kids_parties.length; j++) {
+
+          parties.push(<KidsSlide items={state.kids_parties[j]}/>);
+
+        }
+        return parties;
 
       }
     }
 
-    var allAds = [];
-    const currDate = new Date(Date.now());
-
-    if (state.kids_parties != null && 1 == 2) {
-      var parties = [];
-
-      for (let j = 0; j < state.kids_parties.length; j++) {
-        parties.push(<KidsSlide items={state.kids_parties[j]}/>)
-      }
-      console.log(parties);
-
-      return parties;
-
-      allAds = allAds.concat(renderAds());
-
-    } else if (state.tournament_results != null) {
-      console.log(state.tournament_results);
-      var tournament_table = [];
-      var tournament_results = [];
-      var tournament_knockouts = [];
-      var all_tournaments = [];
+    if (state.tournament_results != null) {
 
       for (let i = 0; i < state.tournament_results.feederDivisions.length; i++) {
         var divisions = state.tournament_results.feederDivisions[i];
@@ -307,49 +348,48 @@ const Index = () => {
         for (let i = 0; i < state.tournament_results.feederResults.length; i++) {
           var matches = state.tournament_results.feederResults[i];
 
-          if (matches.matches != null){
-          if (matches.matches !== undefined && matches.matches.length > 0) {
+          if (matches.matches != null) {
+            if (matches.matches !== undefined && matches.matches.length > 0) {
 
-            const pageSize = 8;  // Maximum items per page
-            const numberOfPages = Math.ceil(matches.matches.length / pageSize);  // Total number of pages
+              const pageSize = 8; // Maximum items per page
+              const numberOfPages = Math.ceil(matches.matches.length / pageSize); // Total number of pages
 
-          for (let i = 0; i < numberOfPages; i++) {
+              for (let i = 0; i < numberOfPages; i++) {
 
-              const start = i * pageSize;
-              const end = start + pageSize;
-              const currentPageItems = matches.matches.slice(start, end);  // Get the items for the current page
+                const start = i * pageSize;
+                const end = start + pageSize;
+                const currentPageItems = matches
+                  .matches
+                  .slice(start, end); // Get the items for the current page
 
-              // Create a TournamentResult for the current page and push it to tournament_results
-              tournament_results.push(
-                 <TournamentResult night={state.tournament_results.name} items={currentPageItems} />
-              );
+                // Create a TournamentResult for the current page and push it to tournament_results
+                tournament_results.push(<TournamentResult
+                  night={state.tournament_results.name}
+                  items={currentPageItems}/>);
+              }
+            }
           }
-        }
-      }
-
 
         }
       }
       if (state.tournament_results.knockOutMatches !== undefined && state.tournament_results.knockOutMatches.length != 0) {
-          var knockouts = state.tournament_results.knockOutMatches;
-          console.log(knockouts);
-          tournament_knockouts.push(<TournamentKnockOut night={state.tournament_results.name} items={knockouts}/>)
+        var knockouts = state.tournament_results.knockOutMatches;
+        tournament_knockouts.push(<TournamentKnockOut night={state.tournament_results.name} items={knockouts}/>)
       }
 
-      all_tournaments = all_tournaments.concat(tournament_table)
-      all_tournaments = all_tournaments.concat(tournament_results)
-      all_tournaments = all_tournaments.concat(tournament_knockouts)
+      all_tournaments = all_tournaments.concat(tournament_table);
+      all_tournaments = all_tournaments.concat(tournament_results);
+      all_tournaments = all_tournaments.concat(tournament_knockouts);
 
-      return all_tournaments
-
-      allAds = allAds.concat(renderAds());
-
-    } else {
-      allAds = allAds.concat(renderAds());
+      allAds = allAds
+        .concat(all_tournaments)
+        .concat(displayAds);
+      return allAds
     }
-    allAds = allAds.concat(league_tables);
-    console.log(league_tables);
-    return allAds;
+
+    allAds = allAds
+      .concat(league_tables)
+      .concat(displayAds);
 
     return shuffleArray(allAds);
 
@@ -387,7 +427,6 @@ const Index = () => {
             <Leaderboard type="today"/>
           </SplideSlide>
         </SplideTrack>
-
         <div className="splide__progress">
           <div className="splide__progress__bar"/>
         </div>

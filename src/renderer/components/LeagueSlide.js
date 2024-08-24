@@ -6,18 +6,21 @@ import {Splide, SplideSlide, SplideTrack} from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 const LeagueSlide = ({items, night}) => {
 
+
+
+
   const dispatch = React.useContext(GlobalDispatchContext);
   const state = React.useContext(GlobalStateContext);
   console.log("in league slide")
   return (
-    <SplideSlide data-splide-interval={155000}>
+    <SplideSlide data-splide-interval={6000}>
       <div className="fixture-background">
         <div className="league-table">
-      <div class="league-header">
+      <div className="league-header">
       <h2>{night}</h2>
       <h3>{items.name}</h3>
       </div>
-      <div class="league-table-header">
+      <div className="league-table-header">
         <span className="team-position">&nbsp;</span>
         <span className="team-name">Team</span>
         <span className="team-played">P</span>
@@ -31,7 +34,9 @@ const LeagueSlide = ({items, night}) => {
 
       </div>
       <ul>
-        {items.rows.map((row, index) => (
+        {
+
+items.rows.slice(0, 8).map((row, index) => (
           <li key={index} className="team-row">
             <span className="team-position">{row.position}</span>
             <span className="team-name">{row.name}</span>

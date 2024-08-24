@@ -10,10 +10,10 @@ const TournamentResult = ({items, night}) => {
   const state = React.useContext(GlobalStateContext);
   console.log("in league slide")
   return (
-    <SplideSlide data-splide-interval={155000}>
+    <SplideSlide data-splide-interval={10000}>
       <div className="fixture-background">
         <div className="league-table">
-      <div class="league-header">
+      <div className="league-header">
       <h2>{night}</h2>
       </div>
       <ul>

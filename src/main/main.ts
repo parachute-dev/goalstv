@@ -9,7 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, globalShortcut, dialog  } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import Store from 'electron-store';
@@ -24,6 +24,7 @@ class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
+
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -85,11 +86,15 @@ const createWindow = async () => {
     return path.join(RESOURCES_PATH, ...paths);
   };
 
+  var kioskMode = true;
+  if (isDebug) {
+    kioskMode = false
+  }
   mainWindow = new BrowserWindow({
     width: 1920,
     height: 1080,
-    alwaysOnTop: false, // enable always on top to prevent other windows from appearing above it
-    kiosk: false, // enable kiosk mode, makes it full screen and what not
+    alwaysOnTop:kioskMode,
+    kiosk: kioskMode,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       webSecurity: false,
@@ -116,6 +121,12 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
+  globalShortcut.register('F5', () => {
+    if (mainWindow) {
+      mainWindow.webContents.openDevTools(); // Open the DevTools
+    }
+  });
+
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 
@@ -125,10 +136,40 @@ const createWindow = async () => {
     return { action: 'deny' };
   });
 
+
+  app.on('will-quit', () => {
+    // Unregister all shortcuts.
+    globalShortcut.unregisterAll();
+  });
+
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
 };
+
+// Auto-update event listeners
+autoUpdater.on('update-available', () => {
+  log.info('Update available');
+  if (mainWindow) {
+    //mainWindow.webContents.send('update_available');
+
+  }
+});
+
+autoUpdater.on('update-downloaded', () => {
+  log.info('Update downloaded');
+  if (mainWindow) {
+    //mainWindow.webContents.send('update_downloaded');
+    autoUpdater.quitAndInstall();
+
+  }
+});
+
+autoUpdater.on('error', (error) => {
+  log.error('Error in auto-updater: ', error);
+ // dialog.showErrorBox('Update Error', 'An error occurred while updating the application.');
+});
+
 
 /**
  * Add event listeners...
