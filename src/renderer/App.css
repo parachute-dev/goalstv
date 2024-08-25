@@ -66,7 +66,7 @@ h3 {
   width: 100vw;
 }
 
-.splide__slide img {
+.splide__slide > img {
   height: 100vh;
   width: 100vw;
   -o-object-fit: cover;
@@ -162,22 +162,43 @@ html body .splide__arrow, .splide__pagination__page {
   margin: 0;
   line-height: 1;
 }
-.fixture-background .league-table ul, .fixture-background .league-table .league-row {
+.fixture-background .league-table ul,
+.fixture-background .league-table .league-row {
   padding: 0;
   margin: 0;
   background: white;
   color: black;
   width: 100%;
 }
-.fixture-background .league-table ul li, .fixture-background .league-table ul .league-item, .fixture-background .league-table ul .row-item, .fixture-background .league-table .league-row li, .fixture-background .league-table .league-row .league-item, .fixture-background .league-table .league-row .row-item {
+.fixture-background .league-table ul li,
+.fixture-background .league-table ul .league-item,
+.fixture-background .league-table ul .row-item,
+.fixture-background .league-table .league-row li,
+.fixture-background .league-table .league-row .league-item,
+.fixture-background .league-table .league-row .row-item {
   border-bottom: 1px solid #ccc;
 }
-.fixture-background .league-table ul li span, .fixture-background .league-table ul .league-item span, .fixture-background .league-table ul .row-item span, .fixture-background .league-table .league-row li span, .fixture-background .league-table .league-row .league-item span, .fixture-background .league-table .league-row .row-item span {
+.fixture-background .league-table ul li span,
+.fixture-background .league-table ul .league-item span,
+.fixture-background .league-table ul .row-item span,
+.fixture-background .league-table .league-row li span,
+.fixture-background .league-table .league-row .league-item span,
+.fixture-background .league-table .league-row .row-item span {
   font-family: "Dharma Gothic E W01 Bold";
   text-transform: uppercase;
   font-size: 3em;
+  line-height: 1.5;
 }
-.fixture-background .league-table li, .fixture-background .league-table .league-item,
+.fixture-background .result-row .team-vs i {
+  font-size: 3rem;
+  width: 40px;
+  text-align: center;
+}
+.fixture-background .result-row .team-vs span {
+  font-size: 4rem;
+}
+.fixture-background .league-table li,
+.fixture-background .league-table .league-item,
 .fixture-background .league-table-header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -186,20 +207,23 @@ html body .splide__arrow, .splide__pagination__page {
       -ms-flex-align: center;
           align-items: center;
 }
-.fixture-background .league-table li span, .fixture-background .league-table .league-item span,
+.fixture-background .league-table li span,
+.fixture-background .league-table .league-item span,
 .fixture-background .league-table-header span {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   padding: 3px 10px;
 }
-.fixture-background .league-table li span.team-position, .fixture-background .league-table .league-item span.team-position,
+.fixture-background .league-table li span.team-position,
+.fixture-background .league-table .league-item span.team-position,
 .fixture-background .league-table-header span.team-position {
   -webkit-box-flex: 0.35;
       -ms-flex: 0.35;
           flex: 0.35;
 }
-.fixture-background .league-table li span.team-name, .fixture-background .league-table .league-item span.team-name,
+.fixture-background .league-table li span.team-name,
+.fixture-background .league-table .league-item span.team-name,
 .fixture-background .league-table-header span.team-name {
   -webkit-box-flex: 5;
       -ms-flex: 5;
@@ -219,6 +243,23 @@ html body .splide__arrow, .splide__pagination__page {
   background: black;
   text-align: left;
   padding: 20px 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+.fixture-background .league-header .league-logo img {
+  height: 180px;
+  margin-right: 40px;
+  margin-bottom: -10px;
+}
+.fixture-background .league-header .league-name {
+  color: white;
 }
 .fixture-background .league-header h2 {
   padding: 0;
@@ -230,6 +271,27 @@ html body .splide__arrow, .splide__pagination__page {
   padding: 0;
   padding-bottom: 0;
   margin-bottom: 0;
+}
+
+.welcome-tournament h1 {
+  margin-bottom: 0;
+  margin-top: -20px;
+  font-size: 8rem;
+  padding-bottom: 0;
+  font-family: Dharma Gothic M W01 ExBold It !important;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);
+}
+.welcome-tournament h2 {
+  font-size: 15rem;
+  max-width: 90%;
+  margin: 0 auto;
+  line-height: 0.8;
+  color: white;
+  margin-bottom: 80px;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);
+}
+.welcome-tournament img {
+  max-height: 100px;
 }
 
 .kids-parties-background {

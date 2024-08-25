@@ -18,8 +18,18 @@ const initialState = {
   tournaments: null,
   tournament_results : null,
   ads: null,
-  kids_date: null,
-  tournament_date: null
+  kids_date: window
+  .electron
+  .store
+  .get('KIDS_DATE') != null
+  ? window.electron.store.get('KIDS_DATE')
+  : null,
+  tournament_date: window
+  .electron
+  .store
+  .get('TOURNAMENT_DATE') != null
+  ? window.electron.store.get('TOURNAMENT_DATE')
+  : null
 };
 
 function reducer(state, action) {

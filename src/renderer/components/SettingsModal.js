@@ -35,12 +35,19 @@ const SettingsModal = ({}) => {
 
   const handleTournamentChange = (date) => {
     dispatch({type: 'SET_TOURNAMENT_DATE', payload: date});
+    window
+    .electron
+    .store
+    .set('TOURNAMENT_DATE', date);
 
   };
 
   const handleKidsPartyChange = (date) => {
     dispatch({type: 'SET_KIDS_DATE', payload: date});
-
+    window
+    .electron
+    .store
+    .set('KIDS_DATE', date);
   };
 
 

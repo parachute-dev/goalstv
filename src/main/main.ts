@@ -98,6 +98,8 @@ const createWindow = async () => {
     icon: getAssetPath('icon.png'),
     webPreferences: {
       webSecurity: false,
+      nodeIntegration: false, // Keep this false for security
+      contextIsolation: true,  // Recommended for security
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
@@ -121,7 +123,7 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
-  globalShortcut.register('F5', () => {
+  globalShortcut.register('F7', () => {
     if (mainWindow) {
       mainWindow.webContents.openDevTools(); // Open the DevTools
     }

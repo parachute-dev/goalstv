@@ -1,7 +1,6 @@
 import * as React from 'react'
 import logo from '../static/logo.png'
-import logomiltonkeynes from '../static/logo-milton-keynes.png'
-import backgroundMilton from '../static/background-portrait-milton-keynes.png'
+
 
 import {GlobalDispatchContext, GlobalStateContext} from '../context/GlobalContextProvider'
 
