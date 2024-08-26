@@ -1,7 +1,7 @@
 import {format} from 'date-fns';
 import {useContext} from 'react';
 import {adsBase, dataHeaders, goalsHeaders, goalsApiBase, shuffleArray} from '../global';
-import LeagueSlide from '../components/LeagueSlide';
+import LeagueSlide from '../components/slides/leagues/LeagueSlide';
 
 export const getLeagues = async(state, dispatch) => {
 

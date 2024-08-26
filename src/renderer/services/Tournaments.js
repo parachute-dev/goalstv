@@ -2,10 +2,10 @@ import {useContext} from 'react';
 import {adsBase, dataHeaders, goalsHeaders, goalsApiBase, shuffleArray} from '../global';
 import {format, isBefore, addHours} from 'date-fns';
 
-import TournamentTable from '../components/TournamentTable';
-import TournamentKnockOut from '../components/TournamentKnockOut';
-import TournamentResult from '../components/TournamentResult';
-import TournamentWelcome from '../components/TournamentWelcome';
+import TournamentTable from '../components/slides/tournament/TournamentTable';
+import TournamentKnockOut from '../components/slides/tournament/TournamentKnockOut';
+import TournamentResult from '../components/slides/tournament/TournamentResult';
+import TournamentWelcome from '../components/slides/tournament/TournamentWelcome';
 
 export const getTournaments = async(state, dispatch) => {
 
@@ -15,10 +15,13 @@ export const getTournaments = async(state, dispatch) => {
 
 
 
+
   if (state.tournament_date != undefined && state.tournament_date != null && state.tournament_date != "") {
-    todaysDate = state.tournament_date;
+    var todaysDateObj = new Date(state.tournament_date);
+    todaysDate =  format( todaysDateObj, "dd-MM-yyyy");
 
   }
+
 
   const response = await fetch(`${goalsApiBase}/tournaments/?branchId=${state.current_club}&tourdate=${todaysDate}`, {
     headers: goalsHeaders,
@@ -73,13 +76,26 @@ export const renderTournaments = (tournament_results) => {
     const tournament_date = new Date(tournament_results.Date);
 
     const now = new Date();
+
+
+  const fromDate = format(currDate, "yyyy-MM-dd'T00:00:00");
+  const toDate = format(currDate, "yyyy-MM-dd'T22:59:59");
+  if (state.tourmanent_date != null && state.tourmanent_date != "") {
+    currDate = new Date(state.tourmanent_date);
+    tournament_date = new Date(state.tourmanent_date);
+  }
+
+  // currDate = new Date("2024-08-23T11:35:00.0000000")
+
+
+
     const twoHoursEarlier = addHours(now, -2);
 
     if (isBefore(tournament_date, twoHoursEarlier) && tournament_results.hoursToGo > -2 ){
       allTournamentSlides.push(<TournamentWelcome tournament={tournament_results} />)
     }
 
-
+0
 
     if ( tournament_results.feederDivisions !== undefined &&  tournament_results.feederDivisions.length > 0){
     for (let i = 0; i < tournament_results.feederDivisions.length; i++) {

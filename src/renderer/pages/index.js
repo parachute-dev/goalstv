@@ -10,7 +10,7 @@ import {getClubs} from '../services/Clubs';
 import {getTournaments, renderTournaments} from '../services/Tournaments';
 import {getLeagues, renderLeagueTables} from '../services/Leagues';
 
-import Slides from '../components/Slides';
+import Slides from '../components/slides/Slides';
 import Layout from '../components/Layout';
 
 const Index = () => {

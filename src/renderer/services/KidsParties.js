@@ -2,14 +2,14 @@ import {format} from 'date-fns';
 import {useContext} from 'react';
 import {adsBase, dataHeaders, goalsHeaders, goalsApiBase, shuffleArray} from '../global';
 
-import KidsSlide from '../components/KidsSlide';
+import KidsSlide from '../components/slides/kids-parties/KidsSlide';
 
 export const getKidsParties = async(state,dispatch) => {
 
   var currDate = new Date(Date.now());
 
   if (state.kids_date != null && state.kids_date != "") {
-    currDate = new Date(kids_date);
+    currDate = new Date(state.kids_date);
   }
 
   // currDate = new Date("2024-08-23T11:35:00.0000000")

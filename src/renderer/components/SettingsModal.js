@@ -85,13 +85,13 @@ const SettingsModal = ({}) => {
           <div className="col-md-6">
             <label className="mb-1"><strong>Tournament Date:</strong></label>
 
-            <input placeholder="example: 21/08/2024" className="form-control" type="text" value={state.tournament_date}  onChange={(e) => handleTournamentChange(e.target.value)} />
+            <input placeholder="example: 21/08/2024" className="form-control" type="datetime-local" value={state.tournament_date}  onChange={(e) => handleTournamentChange(e.target.value)} />
 
           </div>
           <div className="col-md-6">
             <label className="mb-1"><strong>Kids Party Date:</strong></label>
 
-            <input placeholder="example: 21/08/2024"  className="form-control" type="text" value={state.kids_date}  onChange={(e) => handleKidsPartyChange(e.target.value)} />
+            <input placeholder="example: 21/08/2024"  className="form-control" type="datetime-local" value={state.kids_date}  onChange={(e) => handleKidsPartyChange(e.target.value)} />
           </div>
         </div>
         <div className="row mt-4">
