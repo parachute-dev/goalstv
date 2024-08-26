@@ -10,11 +10,6 @@ Clone the project
 
 ```bash
   git clone https://github.com/parachute-dev/goalstv goals-tv
-```
-
-Go to the project directory
-
-```bash
   cd goals-tv
 ```
 
@@ -24,13 +19,13 @@ Install dependencies
   npm install
 ```
 
-Start the server
+Start the app
 
 ```bash
   npm run start
 ```
 
-Package / Build
+Package / build the app
 
 ```bash
   npm run package
@@ -38,7 +33,6 @@ Package / Build
 ## Authors
 
 - Parachute
-
 
 
 ## Acknowledgements
