@@ -2,7 +2,7 @@ import * as React from 'react'
 import logo from '../static/logo.png'
 import {version} from "../global.js";
 import {GlobalDispatchContext, GlobalStateContext} from '../context/GlobalContextProvider'
-import SettingsModal from '../components/SettingsModal';
+import SettingsModal from './settings-modal';
 
 const Layout = ({children}) => {
 

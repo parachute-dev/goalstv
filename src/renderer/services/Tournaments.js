@@ -2,10 +2,10 @@ import {useContext} from 'react';
 import {adsBase, dataHeaders, goalsHeaders, goalsApiBase, shuffleArray} from '../global';
 import {format, isBefore, addHours} from 'date-fns';
 
-import TournamentTable from '../components/slides/tournament/TournamentTable';
-import TournamentKnockOut from '../components/slides/tournament/TournamentKnockOut';
-import TournamentResult from '../components/slides/tournament/TournamentResult';
-import TournamentWelcome from '../components/slides/tournament/TournamentWelcome';
+import TournamentTable from '../components/slides/tournament/tournament-table';
+import TournamentKnockOut from '../components/slides/tournament/tournament-knockout';
+import TournamentResult from '../components/slides/tournament/tournament-result';
+import TournamentWelcome from '../components/slides/tournament/tournament-welcome';
 
 export const getTournaments = async(state, dispatch) => {
 

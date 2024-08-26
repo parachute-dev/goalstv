@@ -10,8 +10,8 @@ import {getClubs} from '../services/Clubs';
 import {getTournaments, renderTournaments} from '../services/Tournaments';
 import {getLeagues, renderLeagueTables} from '../services/Leagues';
 
-import Slides from '../components/slides/Slides';
-import Layout from '../components/Layout';
+import Slides from '../components/slides/slides';
+import Layout from '../components/layout';
 
 const Index = () => {
 

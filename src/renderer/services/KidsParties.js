@@ -2,7 +2,7 @@ import {format} from 'date-fns';
 import {useContext} from 'react';
 import {adsBase, dataHeaders, goalsHeaders, goalsApiBase, shuffleArray} from '../global';
 
-import KidsSlide from '../components/slides/kids-parties/KidsSlide';
+import KidsSlide from '../components/slides/kids-parties/kids-slide';
 
 export const getKidsParties = async(state,dispatch) => {
 

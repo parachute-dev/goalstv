@@ -1,6 +1,6 @@
 // src/Video.jsx
 import React from 'react';
-export const Video = (props) => {
+const Video = (props) => {
     const {src, id, muted, autoplay, ratio, loop} = props;
     let mutedParam = '';
     if(muted){
@@ -29,3 +29,5 @@ export const Video = (props) => {
         />
     );
 }
+
+export default Video
