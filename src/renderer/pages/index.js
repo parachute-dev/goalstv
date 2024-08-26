@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 
 import {GlobalDispatchContext, GlobalStateContext} from '../context/GlobalContextProvider';
 import {useInterval} from '../hooks/useInterval.js';
-import {shuffleArray, interleaveSlides, goalsHeaders, version} from '../global';
+import {shuffleArray, interleaveSlides, goalsHeaders, version, logUptime} from '../global';
 
 import {getKidsParties, renderParties} from '../services/KidsParties';
 import {getAds, renderAds} from '../services/Ads';
@@ -18,18 +18,9 @@ const Index = () => {
   const dispatch = React.useContext(GlobalDispatchContext);
   const state = React.useContext(GlobalStateContext);
 
-  const logUptime = () => {
-
-    fetch("https://locker-room.goalsfootball.co.uk/log-uptime-tv", {
-      method: "POST",
-      headers: goalsHeaders,
-      body: JSON.stringify({"Branch": state.current_club, "Version": version, "Status": "up"})
-    }).then((response) => response.text()).then((result) => console.log(result)).catch((error) => console.error(error));
-
-  }
-
+  // Load everything on startup
   useEffect(() => {
-    logUptime();
+    logUptime(state.current_club);
     getAds(state, dispatch);
     getClubs(state, dispatch);
     getTournaments(state, dispatch);
@@ -37,41 +28,43 @@ const Index = () => {
     getLeagues(state, dispatch);
   }, [state.location]);
 
+
+  // Loop for Getting league info and pinging uptime logs
   useInterval(() => {
     logUptime();
     getLeagues(state, dispatch);
   }, 600000);
 
+  // Loop for Getting New Kids Party Updates (More Frequent)
   useInterval(() => {
     getKidsParties(state, dispatch);
-    getTournaments(state, dispatch);
   }, 300000);
 
+// Loop for Getting Tournaments (More Frequent Still)
   useInterval(() => {
-
     getTournaments(state, dispatch);
   }, 100000);
 
   const renderSlides = () => {
+
     var allAds = [];
     var league_tables = renderLeagueTables(state.league_tables);
     var parties = renderParties(state.kids_parties);
-    console.log("STATE TOURMANENTS");
-    console.log(state.tournament_results);
     var all_tournaments = renderTournaments(state.tournament_results);
-    console.log(all_tournaments);
     var displayAds = renderAds(state.ads);
 
+    //Any Kids Parties - lock it down to only KP
     if (parties.length > 0) {
       return parties;
     }
 
+    //Any Tournaments - just ads & Tournaments
     if (all_tournaments.length > 0) {
-
       allAds = interleaveSlides(all_tournaments, displayAds);
       return allAds;
     }
 
+    //Else just ads & leagues
     allAds = interleaveSlides(league_tables, displayAds);
     return allAds;
 

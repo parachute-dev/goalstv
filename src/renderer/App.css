@@ -65,15 +65,13 @@ h3 {
   height: 100vh;
   width: 100vw;
 }
-
 .splide__slide > img {
   height: 100vh;
   width: 100vw;
   -o-object-fit: cover;
      object-fit: cover;
 }
-
-.splide__slide video {
+.splide__slide > img video {
   -o-object-fit: cover;
      object-fit: cover;
   height: 100vh;

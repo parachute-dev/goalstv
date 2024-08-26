@@ -23,6 +23,16 @@ export const adsHeaders = {
 }
 
 
+export const logUptime = (club) => {
+
+  fetch("https://locker-room.goalsfootball.co.uk/log-uptime-tv", {
+    method: "POST",
+    headers: goalsHeaders,
+    body: JSON.stringify({"Branch": club, "Version": version, "Status": "up"})
+  }).then((response) => response.text()).then((result) => console.log(result)).catch((error) => console.error(error));
+
+}
+
 export const interleaveSlides = (tables, ads) => {
   const combinedSlides = [];
   const totalTables = tables.length;
