@@ -2,6 +2,7 @@ import {format} from 'date-fns';
 import {useContext} from 'react';
 import {adsBase, dataHeaders, goalsHeaders, goalsApiBase, shuffleArray} from '../global';
 import LeagueSlide from '../components/slides/leagues/league-slide';
+import { formatInTimeZone } from 'date-fns-tz'
 
 export const getLeagues = async(state, dispatch) => {
 
@@ -25,7 +26,17 @@ export const getLeagues = async(state, dispatch) => {
 
 const getTables = async(leagues) => {
 
+
   var tables = [];
+
+  let formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'UTC',
+    weekday: 'long',
+  });
+
+  var today = formatter.format(new Date());
+
+
 
   if (leagues != null) {
 
@@ -40,7 +51,12 @@ const getTables = async(leagues) => {
             var leagueId = leagues[i].leagues[j].leagueId;
             var leagueName = leagues[i].name;
 
+            if (leagueName.includes(today)){
+
+
+
             day[leagueName] = await getTable(leagueId);
+          }
 
           }
         }

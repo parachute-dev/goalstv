@@ -16,6 +16,8 @@ import Store from 'electron-store';
 
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+const { networkInterfaces } = require('os');
+
 
 class AppUpdater {
   constructor() {
@@ -172,6 +174,37 @@ autoUpdater.on('error', (error) => {
  // dialog.showErrorBox('Update Error', 'An error occurred while updating the application.');
 });
 
+
+
+  const getLocalIPAddress = () => {
+    const nets = networkInterfaces();
+    const results = {};
+
+    for (const name of Object.keys(nets)) {
+      for (const net of nets[name]) {
+        // Retrieve only IPv4 addresses
+        if (net.family === 'IPv4' && !net.internal) {
+          if (!results[name]) {
+            results[name] = [];
+          }
+          if (net.address.includes("192.168")){
+return net.address;
+          }
+
+        }
+      }
+    }
+
+
+
+    // No IP address found
+    return null;
+  };
+
+  const localIPAddress = getLocalIPAddress();
+
+  store.set("LOCALIPADDRESS", localIPAddress);
+  
 
 /**
  * Add event listeners...

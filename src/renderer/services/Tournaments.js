@@ -64,38 +64,26 @@ const getTournamentResults = async(tournamentId) => {
   }
 };
 
-export const renderTournaments = (tournament_results) => {
+export const renderTournaments = (tournament_results, hard_tournament_date) => {
 
   var allTournamentSlides = [];
   var tournamentTableSlides = [];
   var tournamentKnockoutSlides = [];
   var tournamentResultSlides = [];
 
-  if (tournament_results != null && tournament_results.hoursToGo > -4 ) {
-
-    const tournament_date = new Date(tournament_results.Date);
-
+  if (tournament_results != null && tournament_results.hoursToGo < 1 ) {
+    var tournament_date = new Date(tournament_results.date);
     const now = new Date();
 
 
-  const fromDate = format(currDate, "yyyy-MM-dd'T00:00:00");
-  const toDate = format(currDate, "yyyy-MM-dd'T22:59:59");
-  if (state.tourmanent_date != null && state.tourmanent_date != "") {
-    currDate = new Date(state.tourmanent_date);
-    tournament_date = new Date(state.tourmanent_date);
+  if (hard_tournament_date != null && hard_tournament_date != "") {
+    tournament_date = new Date(hard_tournament_date);
   }
 
-  // currDate = new Date("2024-08-23T11:35:00.0000000")
+    const twoHoursEarlier = addHours(now, -4);
 
-
-
-    const twoHoursEarlier = addHours(now, -2);
-
-    if (isBefore(tournament_date, twoHoursEarlier) && tournament_results.hoursToGo > -2 ){
+    if (isBefore(twoHoursEarlier,tournament_date )){
       allTournamentSlides.push(<TournamentWelcome tournament={tournament_results} />)
-    }
-
-0
 
     if ( tournament_results.feederDivisions !== undefined &&  tournament_results.feederDivisions.length > 0){
     for (let i = 0; i < tournament_results.feederDivisions.length; i++) {
@@ -148,5 +136,6 @@ export const renderTournaments = (tournament_results) => {
 
 
   }
+}
   return allTournamentSlides
 }

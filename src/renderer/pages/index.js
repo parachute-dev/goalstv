@@ -6,7 +6,7 @@ import {shuffleArray, interleaveSlides, goalsHeaders, version, logUptime} from '
 
 import {getKidsParties, renderParties} from '../services/KidsParties';
 import {getAds, renderAds} from '../services/Ads';
-import {getClubs} from '../services/Clubs';
+import {getClubs, getCurrentClub} from '../services/Clubs';
 import {getTournaments, renderTournaments} from '../services/Tournaments';
 import {getLeagues, renderLeagueTables} from '../services/Leagues';
 
@@ -23,6 +23,7 @@ const Index = () => {
     logUptime(state.current_club);
     getAds(state, dispatch);
     getClubs(state, dispatch);
+    getCurrentClub(state,dispatch);
     getTournaments(state, dispatch);
     getKidsParties(state, dispatch);
     getLeagues(state, dispatch);
@@ -50,11 +51,14 @@ const Index = () => {
     var allAds = [];
     var league_tables = renderLeagueTables(state.league_tables);
     var parties = renderParties(state.kids_parties);
-    var all_tournaments = renderTournaments(state.tournament_results);
+    var all_tournaments = renderTournaments(state.tournament_results, state.tournament_date);
     var displayAds = renderAds(state.ads);
 
     //Any Kids Parties - lock it down to only KP
     if (parties.length > 0) {
+      if (state.parties_and_ads){
+        return interleaveSlides(parties, displayAds);
+      }
       return parties;
     }
 

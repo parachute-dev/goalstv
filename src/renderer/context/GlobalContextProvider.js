@@ -5,6 +5,7 @@ export const GlobalDispatchContext = React.createContext();
 
 const initialState = {
   loading: false,
+  localIP: window.electron.store.get('LOCALIPADDRESS') != null ? window.electron.store.get('LOCALIPADDRESS') : "",
   current_club: window
     .electron
     .store
@@ -15,6 +16,7 @@ const initialState = {
   leagues: null,
   league_tables: null,
   kids_parties: null,
+  parties_and_ads: false,
   tournaments: null,
   tournament_results : null,
   ads: null,
@@ -49,6 +51,15 @@ function reducer(state, action) {
             kids_date: action.payload
           }
         }
+        case 'SET_KIDS_PARTIES_AND_ADS':
+          {
+            return {
+              ...state,
+              parties_and_ads : action.payload
+            }
+          }
+
+
         case 'SET_TOURNAMENT_DATE':
           {
             return {
