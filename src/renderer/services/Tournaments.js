@@ -6,6 +6,7 @@ import TournamentTable from '../components/slides/tournament/tournament-table';
 import TournamentKnockOut from '../components/slides/tournament/tournament-knockout';
 import TournamentResult from '../components/slides/tournament/tournament-result';
 import TournamentWelcome from '../components/slides/tournament/tournament-welcome';
+import TournamentWinner from '../components/slides/tournament/tournament-winner';
 
 export const getTournaments = async(state, dispatch) => {
 

@@ -5,3 +5,21 @@
 
 @import 'pages/index';
 @import 'pages/kids-parties';
+@media only screen and (min-resolution:160dpi) {
+  html, body{
+    font-size:8px;
+  }
+}
+
+@media only screen and (min-resolution:140dpi) {
+  html, body{
+    font-size:10px;
+  }
+}
+
+@media only screen and (min-resolution:120dpi) {
+  html, body{
+    font-size:12px;
+  }
+}
+

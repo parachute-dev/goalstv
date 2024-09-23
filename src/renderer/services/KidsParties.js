@@ -23,6 +23,7 @@ export const getKidsParties = async(state, dispatch) => {
     method: 'GET'
   }).then((response) => response.json()).then((responseJson) => {
     if (responseJson.kidsParties != null) {
+      console.log("KIDS PARTIES")
       console.log(responseJson.kidsParties)
 
       if (responseJson.kidsParties !== undefined && responseJson.kidsParties.length != 0) {
@@ -50,6 +51,8 @@ export const getKidsParties = async(state, dispatch) => {
             curatedParties.push(responseJson.kidsParties[j]);
             curatedParties.push(responseJson.kidsParties[j]);
 
+            curatedParties = shuffleArray(curatedParties);
+
             if (currentTime >= minutesBeforePartyEnds && currentTime <= minutesAfterPartyEnds) {
               if (state.parties_and_ads != true){
               dispatch({type: 'SET_KIDS_PARTIES_AND_ADS', payload: true});
@@ -67,7 +70,7 @@ export const getKidsParties = async(state, dispatch) => {
 
 
         if (curatedParties != state.kids_parties) {
-          dispatch({type: 'SET_KIDS_PARTIES', payload: curatedParties});
+          dispatch({type: 'SET_KIDS_PARTIES', payload: shuffleArray(curatedParties)});
         }
 
       }

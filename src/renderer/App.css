@@ -154,9 +154,9 @@ html body .splide__arrow, .splide__pagination__page {
 }
 .fixture-background .knockoutType h3 {
   color: black;
-  font-size: 3em;
+  font-size: 2rem;
   text-align: center;
-  padding: 15px;
+  padding: 5px 15px;
   margin: 0;
   line-height: 1;
 }
@@ -184,7 +184,7 @@ html body .splide__arrow, .splide__pagination__page {
 .fixture-background .league-table .league-row .row-item span {
   font-family: "Dharma Gothic E W01 Bold";
   text-transform: uppercase;
-  font-size: 3em;
+  font-size: 3rem;
   line-height: 1.5;
 }
 .fixture-background .result-row .team-vs i {
@@ -403,11 +403,27 @@ html body .splide__arrow, .splide__pagination__page {
           box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.54);
 }
 .kids-parties-background .name {
-  font-size: 6.5em !important;
+  font-size: 4.5rem !important;
   top: 50%;
   left: 50%;
   width: 90%;
   line-height: 0.9;
   -webkit-transform: translate(-50%, -8px);
           transform: translate(-50%, -8px);
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.6666666666666667), only screen and (min-resolution: 160dpi) {
+  html, body {
+    font-size: 8px;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.4583333333333333), only screen and (min-resolution: 140dpi) {
+  html, body {
+    font-size: 10px;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.25), only screen and (min-resolution: 120dpi) {
+  html, body {
+    font-size: 12px;
+  }
 }

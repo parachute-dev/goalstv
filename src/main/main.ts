@@ -13,6 +13,7 @@ import { app, BrowserWindow, shell, ipcMain, globalShortcut, dialog  } from 'ele
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import Store from 'electron-store';
+const AutoLaunch = require('auto-launch');
 
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -26,7 +27,20 @@ class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
+const appAutoLauncher = new AutoLaunch({
+  name: 'GoalsTV',  // Replace with the name of your app
+  path: app.getPath('exe'), // Path to your app executable
+  isHidden: true,  // Optional: Set whether to launch the app in hidden mode
+});
 
+// Check if auto-launch is enabled, and enable it if not
+appAutoLauncher.isEnabled().then((isEnabled) => {
+  if (!isEnabled) {
+      appAutoLauncher.enable();
+  }
+}).catch((err) => {
+  console.error('Error checking or enabling auto-launch:', err);
+});
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -204,7 +218,7 @@ return net.address;
   const localIPAddress = getLocalIPAddress();
 
   store.set("LOCALIPADDRESS", localIPAddress);
-  
+
 
 /**
  * Add event listeners...
