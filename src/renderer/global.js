@@ -1,7 +1,7 @@
 import {apiKey} from "./creds.js";
 export const adsBase = "https://locker-room.goalsfootball.co.uk";
 export const goalsApiBase = "https://api.goalsfootball.co.uk";
-export const version = "2.0.62";
+export const version = "2.0.7";
 
 export const goalsHeaders = {
   "Content-Type" : "application/json",

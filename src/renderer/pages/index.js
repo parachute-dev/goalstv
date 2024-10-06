@@ -33,6 +33,7 @@ const Index = () => {
   // Loop for Getting league info and pinging uptime logs
   useInterval(() => {
     logUptime();
+    getAds(state, dispatch);
     getLeagues(state, dispatch);
   }, 600000);
 
