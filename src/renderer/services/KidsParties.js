@@ -2,7 +2,9 @@ import {format} from 'date-fns';
 import {useContext} from 'react';
 import {adsBase, dataHeaders, goalsHeaders, goalsApiBase, shuffleArray} from '../global';
 import {renderAds} from './Ads'
+import KidsSlideXmas from '../components/slides/kids-parties/kids-slide-xmas';
 import KidsSlide from '../components/slides/kids-parties/kids-slide';
+import Snowfall from 'react-snowfall'
 
 export const getKidsParties = async(state, dispatch) => {
 
@@ -40,16 +42,24 @@ export const getKidsParties = async(state, dispatch) => {
 
           var bookingDate = new Date(responseJson.kidsParties[j].bookingDate);
 
-          var minutesBeforePartyStarts = new Date(bookingDate.getTime() - 20 * 60 * 1000);
+          var minutesBeforePartyStarts = new Date(bookingDate.getTime() - 10 * 60 * 1000);
 
-          var minutesBeforePartyEnds = new Date(bookingDate.getTime() + 20 * 60 * 1000);
-          var minutesAfterPartyEnds = new Date(bookingDate.getTime() + 40 * 60 * 1000);
-          var partyFinishes = new Date(bookingDate.getTime() + 60 * 60 * 1000);
+          var minutesBeforePartyEnds = new Date(bookingDate.getTime() + 10 * 60 * 1000);
+          var minutesAfterPartyEnds = new Date(bookingDate.getTime() + 50 * 60 * 1000);
+          var partyFinishes = new Date(bookingDate.getTime() + 70 * 60 * 1000);
+
 
           if (currentTime >= minutesBeforePartyStarts && currentTime <= partyFinishes) {
             curatedParties.push(responseJson.kidsParties[j]);
+
+            if (currentTime >= minutesBeforePartyEnds && currentTime <= minutesAfterPartyEnds ){
             curatedParties.push(responseJson.kidsParties[j]);
             curatedParties.push(responseJson.kidsParties[j]);
+            curatedParties.push(responseJson.kidsParties[j]);
+            curatedParties.push(responseJson.kidsParties[j]);
+            curatedParties.push(responseJson.kidsParties[j]);
+            curatedParties.push(responseJson.kidsParties[j]);
+            }
 
             curatedParties = shuffleArray(curatedParties);
 
@@ -87,7 +97,12 @@ export const renderParties = (parties) => {
   if (parties != null) {
     if (parties.length > 0) {
       for (let j = 0; j < parties.length; j++) {
+        if (parties[j].description == "Christmas Party" ){
+          partySlides.push(<KidsSlideXmas items={parties[j]}/>);
+
+        }else{
         partySlides.push(<KidsSlide items={parties[j]}/>);
+        }
       }
       return partySlides;
     }

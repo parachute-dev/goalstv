@@ -15,7 +15,7 @@ export const getLeagues = async(state, dispatch) => {
 
     if (responseJson.leagueDays != null) {
       dispatch({type: 'SET_LEAGUES', payload: responseJson.leagueDays});
-
+console.log(responseJson);
       const tables = await getTables(responseJson.leagueDays);
       dispatch({type: 'SET_LEAGUE_TABLES', payload: tables});
     }
@@ -75,6 +75,8 @@ const getTable = async(leagueId) => {
       method: 'GET'
     });
     const responseJson = await response.json();
+    console.log(responseJson);
+
     if (responseJson != null) {
       return responseJson;
     }

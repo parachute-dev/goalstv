@@ -110,3 +110,23 @@ padding-bottom:0;
   transform:translate(-50%,-8px);
 }
 }
+
+.kids-parties-background-xmas{
+  background-image: url("static/kids-parties/TV_MerryXmas.png")!important;
+
+
+  .xmas-content{
+    margin-top:-10em;
+    position:relative;
+    left:8em;
+    h3{
+      font-family: "Dharma Gothic E W01 Bold"!important;
+      font-size:6em!important;
+
+    }
+    img{
+      max-width:280px;
+      margin-bottom:20px;
+    }
+  }
+}
