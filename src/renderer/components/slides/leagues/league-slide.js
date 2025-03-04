@@ -9,10 +9,20 @@ import ThursdayLogo from '../../../static/league-logos/thursday-logo.png'
 import FridayLogo from '../../../static/league-logos/friday-logo.png'
 import SundayLogo from '../../../static/league-logos/sunday-logo.png'
 import SaturdayLogo from '../../../static/league-logos/saturday-logo.png'
+import Snowfall from 'react-snowfall'
 
 import '@splidejs/react-splide/css';
 const LeagueSlide = ({items, night}) => {
 
+  const RenderSnowFall = () => {
+
+    const today = new Date();
+    const targetDate = new Date("2025-01-03");
+
+    if (today < targetDate){
+      return (<Snowfall/>)
+    }
+  }
   const renderLeagueLogo = (night) => {
     var logo = MondayLogo;
     if (night != null) {
@@ -52,6 +62,7 @@ const LeagueSlide = ({items, night}) => {
       <SplideSlide
       data-type={"league-table"} data-splide-interval={6000}>
         <div className="fixture-background">
+          {RenderSnowFall()}
           <div className="league-table">
             <div className="league-header">
               <div className="league-logo">

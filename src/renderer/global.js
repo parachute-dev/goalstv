@@ -1,7 +1,7 @@
 import {apiKey} from "./creds.js";
 export const adsBase = "https://locker-room.goalsfootball.co.uk";
 export const goalsApiBase = "https://api.goalsfootball.co.uk";
-export const version = "2.0.10";
+export const version = "2.0.13";
 
 export const goalsHeaders = {
   "Content-Type" : "application/json",
@@ -12,7 +12,7 @@ export const goalsHeaders = {
 export function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
 }
@@ -21,7 +21,6 @@ export const adsHeaders = {
   "Content-Type" : "application/json",
   "Accept" : "application/json"
 }
-
 
 export const logUptime = (club) => {
 

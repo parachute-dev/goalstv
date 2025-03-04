@@ -1,7 +1,6 @@
 // Slides.js
 import React, { useEffect, useRef } from 'react';
 import Leaderboard from './leaderboard';
-import ReactGA from 'react-ga4';
 import {GlobalDispatchContext, GlobalStateContext} from '../../context/GlobalContextProvider'
 
 import {Splide, SplideSlide, SplideTrack} from '@splidejs/react-splide';
@@ -33,11 +32,7 @@ const Slides = ({items}) => {
         console.log('Asset shown:', assetSrc);
 
         // Trigger Google Analytics event
-        ReactGA.event({
-          category: state.current_club,
-          action: slideType,
-          label: assetSrc,
-        });
+
       });
     }
   }, []);
@@ -64,7 +59,7 @@ const Slides = ({items}) => {
       resetProgress: false,
       video: {
         autoplay: true,
-        mute: true,
+        mute: false,
         loop: true
       }
     }}>

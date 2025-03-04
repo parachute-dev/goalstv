@@ -30,6 +30,8 @@ const Index = () => {
   }, [state.location]);
 
 
+
+
   // Loop for Getting league info and pinging uptime logs
   useInterval(() => {
     logUptime();
@@ -45,7 +47,7 @@ const Index = () => {
 // Loop for Getting Tournaments (More Frequent Still)
   useInterval(() => {
     getTournaments(state, dispatch);
-  }, 100000);
+  }, 600000);
 
   const renderSlides = () => {
 

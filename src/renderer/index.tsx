@@ -2,8 +2,6 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import GlobalContextProvider  from './context/GlobalContextProvider'
 import { MemoryRouter } from 'react-router-dom';
-import ReactGA from 'react-ga4';
-ReactGA.initialize('G-XW3PRCC9GN');
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);

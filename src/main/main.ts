@@ -232,14 +232,27 @@ app.on('window-all-closed', () => {
   }
 });
 
-app
-  .whenReady()
-  .then(() => {
+
+
+
+const gotTheLock = app.requestSingleInstanceLock();
+
+if (!gotTheLock) {
+  // If we didn't get the lock, that means another instance is running, so we quit
+  app.quit();
+} else {
+  // If we got the lock, set up an event listener for the second instance attempt
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // This will be triggered if a second instance is opened
+    // Focus the primary instance window here, e.g. by showing and focusing the main window
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
+    }
+  });
+
+  // Continue with your app's normal startup process
+  app.on('ready', () => {
     createWindow();
-    app.on('activate', () => {
-      // On macOS it's common to re-create a window in the app when the
-      // dock icon is clicked and there are no other windows open.
-      if (mainWindow === null) createWindow();
-    });
-  })
-  .catch(console.log);
+  });
+}

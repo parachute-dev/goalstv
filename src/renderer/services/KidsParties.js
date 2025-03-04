@@ -44,15 +44,21 @@ export const getKidsParties = async(state, dispatch) => {
 
           var minutesBeforePartyStarts = new Date(bookingDate.getTime() - 10 * 60 * 1000);
 
-          var minutesBeforePartyEnds = new Date(bookingDate.getTime() + 10 * 60 * 1000);
-          var minutesAfterPartyEnds = new Date(bookingDate.getTime() + 50 * 60 * 1000);
-          var partyFinishes = new Date(bookingDate.getTime() + 70 * 60 * 1000);
+          var minutesAfterPartyStarts = new Date(bookingDate.getTime() + 10 * 60 * 1000);
 
 
-          if (currentTime >= minutesBeforePartyStarts && currentTime <= partyFinishes) {
+          var minutesBeforeFood = new Date(bookingDate.getTime() + 50 * 60 * 1000);
+
+          var minutesAfterFood = new Date(bookingDate.getTime() + 70 * 60 * 1000);
+
+          var minutesBeforePartyFinishes = new Date(bookingDate.getTime() + 110 * 60 * 1000);
+          var minutesAfterPartyFinishes = new Date(bookingDate.getTime() + 119 * 60 * 1000);
+
+
+          if (currentTime >= minutesBeforePartyStarts && currentTime <= minutesAfterPartyFinishes) {
             curatedParties.push(responseJson.kidsParties[j]);
 
-            if (currentTime >= minutesBeforePartyEnds && currentTime <= minutesAfterPartyEnds ){
+            if ((currentTime >= minutesAfterPartyStarts && currentTime <= minutesBeforeFood) || (currentTime >= minutesAfterFood && currentTime <= minutesBeforePartyFinishes)){
             curatedParties.push(responseJson.kidsParties[j]);
             curatedParties.push(responseJson.kidsParties[j]);
             curatedParties.push(responseJson.kidsParties[j]);
@@ -62,8 +68,9 @@ export const getKidsParties = async(state, dispatch) => {
             }
 
             curatedParties = shuffleArray(curatedParties);
+            curatedParties = shuffleArray(curatedParties);
 
-            if (currentTime >= minutesBeforePartyEnds && currentTime <= minutesAfterPartyEnds) {
+            if ((currentTime >= minutesAfterPartyStarts && currentTime <= minutesBeforeFood) || (currentTime >= minutesAfterFood && currentTime <= minutesBeforePartyFinishes)){
               if (state.parties_and_ads != true){
               dispatch({type: 'SET_KIDS_PARTIES_AND_ADS', payload: true});
               }
@@ -97,7 +104,8 @@ export const renderParties = (parties) => {
   if (parties != null) {
     if (parties.length > 0) {
       for (let j = 0; j < parties.length; j++) {
-        if (parties[j].description == "Christmas Party" ){
+        var description = parties[j].description.toLowerCase();
+        if (description.includes("christmas") ||  description.includes("xmas")){
           partySlides.push(<KidsSlideXmas items={parties[j]}/>);
 
         }else{

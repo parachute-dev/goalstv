@@ -5,7 +5,7 @@ import {Splide, SplideSlide, SplideTrack} from '@splidejs/react-splide';
 
 export const getAds = (state,dispatch) => {
   if (state.current_club != null) {
-    fetch(`${adsBase}/tv-screen?location=${state.current_club}`, {
+    fetch(`${adsBase}/tv-screen/?location=${state.current_club}`, {
       headers: {
         'content-type': 'text/json'
       },

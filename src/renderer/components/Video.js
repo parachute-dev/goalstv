@@ -18,7 +18,7 @@ const Video = (props) => {
         <div className={`videoContainer ratio-${ratio}`} dangerouslySetInnerHTML={{
             __html: `
           <video
-            ${mutedParam}
+
             ${autoplayParam}
             ${loopParam}
             playsinline
